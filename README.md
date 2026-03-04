@@ -68,10 +68,10 @@ Claudable supports multiple AI coding agents, giving you the flexibility to choo
 - **Z.AI GLM-4.6** - Zhipu AI's coding agent
 
 ### Claude Code (Recommended)
-**[Claude Code](https://docs.anthropic.com/en/docs/claude-code/setup)** - Anthropic's advanced AI coding agent with Claude Opus 4.1
+**[Claude Code](https://docs.anthropic.com/en/docs/claude-code/setup)** - Anthropic's advanced AI coding agent with Claude Opus 4.6
 - **Features**: Deep codebase awareness, Unix philosophy, direct terminal integration
 - **Context**: Native 200k tokens
-- **Pricing**: Requires Anthropic API key or Claude subscription
+- **Pricing**: Included with Claude Pro/Max/Team/Enterprise plans, or Anthropic API key
 - **Installation**:
   ```bash
   npm install -g @anthropic-ai/claude-code
@@ -82,7 +82,7 @@ Claudable supports multiple AI coding agents, giving you the flexibility to choo
 **[Codex CLI](https://github.com/openai/codex)** - OpenAI's powerful coding agent with GPT-5 support
 - **Features**: High reasoning capabilities, local execution, multiple operating modes (interactive, auto-edit, full-auto)
 - **Context**: Varies by model
-- **Pricing**: Included with ChatGPT Plus/Pro/Business/Edu/Enterprise plans
+- **Pricing**: Included with ChatGPT Plus/Pro/Business/Edu/Enterprise plans (from $20/month)
 - **Installation**:
   ```bash
   npm install -g @openai/codex
@@ -93,7 +93,7 @@ Claudable supports multiple AI coding agents, giving you the flexibility to choo
 **[Cursor CLI](https://cursor.com/en/cli)** - Powerful AI agent with access to cutting-edge models
 - **Features**: Multi-model support (Anthropic, OpenAI), AGENTS.md support
 - **Context**: Model dependent
-- **Pricing**: Starting from $20/month Pro plan
+- **Pricing**: Free tier available, Pro from $20/month (credit-based system)
 - **Installation**:
   ```bash
   curl https://cursor.com/install -fsS | bash
