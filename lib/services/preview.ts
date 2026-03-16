@@ -30,6 +30,12 @@ const PACKAGE_MANAGER_COMMANDS: Record<
 const LOG_LIMIT = PREVIEW_CONFIG.LOG_LIMIT;
 const PREVIEW_FALLBACK_PORT_START = PREVIEW_CONFIG.FALLBACK_PORT_START;
 const PREVIEW_FALLBACK_PORT_END = PREVIEW_CONFIG.FALLBACK_PORT_END;
+
+/**
+ * If set, preview URLs will use this template instead of localhost.
+ * Use {port} as placeholder. Example: https://gemgem-preview-{port}.tinysolver.me
+ */
+const PREVIEW_EXTERNAL_URL_TEMPLATE = process.env.PREVIEW_EXTERNAL_URL_TEMPLATE || '';
 const PREVIEW_MAX_PORT = 65_535;
 const ROOT_ALLOWED_FILES = new Set([
   '.DS_Store',
@@ -902,12 +908,20 @@ class PreviewManager {
       log(Buffer.from(`Preview process failed: ${error.message}`));
     });
 
-    await waitForPreviewReady(previewProcess.url, log).catch(() => {
+    // Wait using the local URL (always localhost for health check)
+    const localUrl = `http://localhost:${effectivePort}`;
+    await waitForPreviewReady(localUrl, log).catch(() => {
       // wait function already logged; ignore errors
     });
 
+    // Use external URL template for the client-facing URL if configured
+    const clientUrl = PREVIEW_EXTERNAL_URL_TEMPLATE
+      ? PREVIEW_EXTERNAL_URL_TEMPLATE.replace('{port}', String(effectivePort))
+      : previewProcess.url;
+    previewProcess.url = clientUrl;
+
     await updateProject(projectId, {
-      previewUrl: previewProcess.url,
+      previewUrl: clientUrl,
       previewPort: previewProcess.port,
       status: 'running',
     });
