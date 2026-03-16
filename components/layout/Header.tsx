@@ -11,11 +11,12 @@ export default function Header() {
   // Extract project ID from pathname if we're in a project page
   const projectId = pathname.match(/^\/([^\/]+)\/(chat|page)?$/)?.[1];
 
-  // Hide header on chat pages and main page (main page has its own header)
+  // Hide header on chat pages, main page, and rehab landing page (they have their own headers)
   const isChatPage = pathname.includes('/chat');
   const isMainPage = pathname === '/';
+  const isRehabPage = pathname === '/rehab';
 
-  if (isChatPage || isMainPage) {
+  if (isChatPage || isMainPage || isRehabPage) {
     return null;
   }
 
